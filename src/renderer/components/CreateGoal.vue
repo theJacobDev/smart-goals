@@ -10,14 +10,14 @@
     <el-row type="flex" justify="center">
       <el-col :span="20">
         <el-form :model="form" label-position="left" :rules="rules" :status-icon="true" ref="goalForm" label-width="7rem">
-          <el-form-item label="Specific" prop="specific">
+          <el-form-item class="remove-required-icon" label="Specific" prop="specific">
             <el-input placeholder="Name" v-model="form.specific"></el-input>
           </el-form-item>
           <el-form-item label="Measurable" prop="measurables">
             <el-input placeholder="Measurable" ref="measurable" @keyup.enter.native="addMeasurable" v-model="newMeasurement">
               <el-button @click="addMeasurable" slot="append" icon="el-icon-list">Add</el-button>
             </el-input>
-            <p v-for="measurement in form.measurables">
+            <p v-for="measurement in form.measurables" :key="measurement.id">
               <i class="el-icon-circle-close-outline delete-icon" @click="removeItemFromList('measurables', measurement.id)" />
               {{ measurement.name }}
             </p>
@@ -26,15 +26,15 @@
             <el-input placeholder="Achievable" ref="measurable" @keyup.enter.native="addAchievable" v-model="newAchievable">
               <el-button @click="addAchievable" slot="append" icon="el-icon-list">Add</el-button>
             </el-input>
-            <p v-for="achievable in form.achievables">
+            <p v-for="achievable in form.achievables" :key="achievable.id">
               <i class="el-icon-circle-close-outline delete-icon" @click="removeItemFromList('achievables', achievable.id)" />
               {{ achievable.name }}
             </p>
           </el-form-item>
-          <el-form-item label="Relevant" prop="relevant">
+          <el-form-item class="remove-required-icon" label="Relevant" prop="relevant">
             <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 6}" v-model="form.relevant"></el-input>
           </el-form-item>
-          <el-form-item label="Time-bound" prop="timeBound">
+          <el-form-item class="remove-required-icon" label="Time-bound" prop="timeBound">
             <el-radio-group v-model="dateSelectionType" class="date-type">
               <el-radio-button label="month"></el-radio-button>
               <el-radio-button label="year"></el-radio-button>
@@ -53,7 +53,8 @@
 
 <script>
 import { mapActions } from 'vuex'
-import uuid from 'uuid/v4'
+import { addItem, deleteItem } from '../helpers/goalListEdit'
+import moment from 'moment'
 
 import PageHeader from '@/components/Common/PageHeader'
 
@@ -96,7 +97,12 @@ export default {
     createGoal () {
       this.$refs['goalForm'].validate((valid) => {
         if (valid) {
-          this.createNewGoal({ ...this.form, created_at: new Date.Now() })
+          this.createNewGoal({ ...this.form, created_at: moment().toDate() })
+            .then(newGoal => {
+              this.$router.push({ name: 'goal', params: { id: newGoal._id } })
+            }, error => {
+              alert(error)
+            })
         } else {
           return false
         }
@@ -109,20 +115,20 @@ export default {
     },
     addMeasurable () {
       if (this.newMeasurement !== '') {
-        this.form.measurables.push({ name: this.newMeasurement, id: uuid(), completed: false })
+        this.form.measurables = addItem(this.newMeasurement, this.form.measurables)
         this.newMeasurement = ''
         this.$refs['goalForm'].validateField('measurables')
       }
     },
     addAchievable () {
       if (this.newAchievable !== '') {
-        this.form.achievables.push({ name: this.newAchievable, id: uuid(), completed: false })
+        this.form.achievables = addItem(this.newAchievable, this.form.achievables)
         this.newAchievable = ''
         this.$refs['goalForm'].validateField('achievables')
       }
     },
     removeItemFromList (listName, id) {
-      this.form[listName].splice(this.form[listName].findIndex(item => item.id === id), 1)
+      this.form[listName] = deleteItem(id, this.form[listName])
     },
     validateMeasurements (rule, value, callback) {
       if (this.form.measurables.length === 0) {
@@ -157,15 +163,19 @@ export default {
   margin-bottom: 2rem;
 }
 
-label {
-  &:before {
-    content: '';
-  }
-}
-
 .delete-icon {
   color: $grey-dark-4;
   margin-right: 1em;
   cursor: pointer;
+}
+</style>
+
+<style lang="scss">
+.remove-required-icon {
+  label {
+    &:before {
+      content: '' !important;
+    }
+  }
 }
 </style>

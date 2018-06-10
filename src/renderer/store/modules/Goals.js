@@ -30,9 +30,12 @@ const actions = {
     })
   },
   createNewGoal ({ commit }, goal) {
-    db.goals.insert(goal, (err, newGoal) => {
-      if (err) alert(err)
-      commit('ADD_GOAL', newGoal)
+    return new Promise((resolve, reject) => {
+      db.goals.insert(goal, (err, newGoal) => {
+        if (err) reject(err)
+        commit('ADD_GOAL', newGoal)
+        resolve(newGoal)
+      })
     })
   },
   updateGoalSingleField ({ commit }, data) {
