@@ -4,17 +4,28 @@
       with 
       <font-awesome-icon icon="heart" /> 
       by 
-      <a href="https://twitter.com/thejacobdev">@theJacobDev</a>
+      <a href="#" @click.prevent="openTwitter">@theJacobDev</a>
     </p>
   </div>
 </template>
 
 <script>
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+import openOSBrowser from '../../helpers/openOSBrowser'
 
 export default {
   name: 'SideMenuBottom',
-  components: { FontAwesomeIcon }
+  components: { FontAwesomeIcon },
+  data () {
+    return {
+      twitterLink: 'https://twitter.com/thejacobdev'
+    }
+  },
+  methods: {
+    openTwitter () {
+      openOSBrowser(this.twitterLink)
+    }
+  }
 }
 </script>
 
