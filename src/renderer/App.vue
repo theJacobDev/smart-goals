@@ -1,6 +1,6 @@
 <template>
   <el-container id="app">
-    <el-aside width="200px">
+    <el-aside class="side-menu">
       <side-menu />
     </el-aside>
     <el-container>
@@ -27,6 +27,7 @@
 <style lang='scss'>
 @import '~element-ui/lib/theme-chalk/index.css';
 @import '@/assets/scss/palette.scss';
+@import '@/assets/scss/variables.scss';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro');
 
 body,input {
@@ -36,6 +37,16 @@ body,input {
 
   > section {
     min-height: 100vh;
+  }
+
+  #app {
+    margin-left: $side-menu-width;
+
+    .side-menu {
+      width: $side-menu-width !important;
+      margin-left: -$side-menu-width;
+      position: fixed;
+    }
   }
 }
 

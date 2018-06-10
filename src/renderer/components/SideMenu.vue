@@ -32,7 +32,7 @@ export default {
 .el-menu {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   border-right: none;
   background-color: $rich-black;
 
