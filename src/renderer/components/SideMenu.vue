@@ -1,42 +1,20 @@
 <template>
   <el-menu :default-active="defaultRoute" :router="true">
-    <img src="static/imgs/logo.png">
-    <el-menu-item index="/dashboard">
-      <template slot="title">
-        <i class="el-icon-menu" />
-        <span>Dashboard</span>
-      </template>
-    </el-menu-item>
-    <el-menu-item index="/create-goal">
-      <template slot="title">
-        <i class="el-icon-edit-outline" />
-        <span>Add goal</span>
-      </template>
-    </el-menu-item>
-    <el-menu-item index="/goals-list">
-      <template slot="title">
-        <i class="el-icon-tickets" />
-        <span>Goals list</span>
-      </template>
-    </el-menu-item>
-    <el-menu-item index="/settings">
-      <template slot="title">
-        <i class="el-icon-setting" />
-        <span>Settings</span>
-      </template>
-    </el-menu-item>
-    <!-- <el-submenu index="goals-list">
-      <template slot="title">
-        <i class="el-icon-list" />
-        <span>Goals list</span>
-      </template>
-    </el-submenu> -->
+    <side-menu-top />
+    <side-menu-bottom />
   </el-menu>
 </template>
 
 <script>
+import SideMenuTop from './SideMenu/Top'
+import SideMenuBottom from './SideMenu/Bottom'
+
 export default {
   name: 'side-menu',
+  components: {
+    SideMenuTop,
+    SideMenuBottom
+  },
   data () {
     return {
       defaultRoute: 'dashboard'
@@ -52,6 +30,8 @@ export default {
 @import '@/assets/scss/palette.scss';
 
 .el-menu {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   border-right: none;
   background-color: $rich-black;

@@ -5,6 +5,8 @@ import 'vue-awesome/icons'
 import ElementUi from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/en'
 import VueMoment from 'vue-moment'
+import fontawesome from '@fortawesome/fontawesome'
+import icons from '@fortawesome/fontawesome-free-solid'
 
 import App from './App'
 import router from './router'
@@ -18,6 +20,9 @@ Vue.prototype.$db = db
 Vue.use(ElementUi, { locale })
 Vue.use(VueMoment)
 Vue.use(VueRouter)
+Vue.use(fontawesome)
+
+fontawesome.library.add(icons)
 
 /* eslint-disable no-new */
 new Vue({
