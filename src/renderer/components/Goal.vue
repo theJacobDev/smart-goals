@@ -49,7 +49,7 @@ export default {
   computed: {
     ...mapGetters('Goals', ['goalById']),
     goal () {
-      return this.goalById(this.$route.params.id)
+      return this.goalById(this.$route.params.id) || {}
     }
   },
   methods: {
