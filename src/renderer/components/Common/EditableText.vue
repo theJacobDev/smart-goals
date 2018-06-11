@@ -4,11 +4,13 @@
     <el-input
       v-if="isEditing"
       v-model="model"
-      type="text"
+      :type="type"
       @keyup.enter.native="toggleEdit"
+      :rows="[type === 'textarea' ? 5 : 1]"
       ></el-input>
     <span v-else>
-      <h2>{{ value }}</h2>
+      <h2 v-if="tag === 'h2'">{{ value }}</h2>
+      <p v-else>{{ value }}</p>
     </span>
   </div>
 </template>
@@ -17,7 +19,15 @@
 export default {
   name: 'editable-text',
   props: {
-    value: String
+    value: String,
+    type: {
+      type: String,
+      default: 'text'
+    },
+    tag: {
+      type: String,
+      default: 'h2'
+    }
   },
   data () {
     return {
@@ -47,15 +57,23 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/scss/palette.scss';
 
-.el-card__header {
+div {
+  display: flex;
+  align-content: center;
+}
 
-  .el-input {
+.el-input {
     width: auto;
   }
 
   i {
-    margin-right: 0.75em;
+    margin-right: 0.6em;
     cursor: pointer;
+    align-self: center;
+  }
+
+  h2 {
+    margin: 0;
   }
 
   .el-icon-edit {
@@ -64,5 +82,4 @@ export default {
   .el-icon-check {
     color: $elem-success;
   }
-}
 </style>

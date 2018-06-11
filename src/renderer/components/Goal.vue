@@ -25,7 +25,7 @@
         <h2>Relevant</h2>
       </div>
       <div>
-        <p>{{ goal.relevant }}</p>
+        <editable-text type="textarea" tag="p" :value="goal.relevant" @update="updateGoal('relevant', $event)" />
       </div>
     </el-card>
   </div>
@@ -77,8 +77,12 @@ export default {
   .el-card {
     margin-bottom: 20px;
     h2 {
-      margin-bottom: 0.2em;
-      margin-top: 0.2em;
+      margin-bottom: 0em;
+      margin-top: 0em;
+    }
+
+    p {
+      word-break: break-all;
     }
   }
 }
