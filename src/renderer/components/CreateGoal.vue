@@ -54,7 +54,8 @@
 <script>
 import { mapActions } from 'vuex'
 import { addItem, deleteItem } from '../helpers/goalListEdit'
-import moment from 'moment'
+import Goal from '../models/Goal'
+// import moment from 'moment'
 
 import PageHeader from '@/components/Common/PageHeader'
 
@@ -97,7 +98,7 @@ export default {
     createGoal () {
       this.$refs['goalForm'].validate((valid) => {
         if (valid) {
-          this.createNewGoal({ ...this.form, created_at: moment().toDate() })
+          this.createNewGoal(new Goal(this.form))
             .then(newGoal => {
               this.$router.push({ name: 'goal', params: { id: newGoal._id } })
             }, error => {
