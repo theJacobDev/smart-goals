@@ -4,7 +4,7 @@
       <side-menu />
     </el-aside>
     <el-container>
-      <el-main>
+      <el-main class="gradient-background">
         <router-view />
       </el-main>
     </el-container>
@@ -46,6 +46,10 @@ body,input {
       width: $side-menu-width !important;
       margin-left: -$side-menu-width;
       position: fixed;
+    }
+
+    .gradient-background {
+      background: linear-gradient(-25deg, #eafaff, $white);
     }
   }
 }
