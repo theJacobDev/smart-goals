@@ -1,0 +1,16 @@
+@import './palette';
+
+.color {
+  &--danger {
+    color: $elem-danger;
+  }
+  &--warning {
+    color: $elem-warning;
+  }
+  &--success {
+    color: $elem-success;
+  }
+  &--info {
+    color: $elem-info;
+  }
+}
