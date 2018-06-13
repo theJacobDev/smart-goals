@@ -28,6 +28,7 @@
 @import '~element-ui/lib/theme-chalk/index.css';
 @import '@/assets/scss/palette.scss';
 @import '@/assets/scss/variables.scss';
+@import '@/assets/scss/helpers.scss';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro');
 
 body,input {
