@@ -15,8 +15,8 @@ const ROUTES = [
     component: require('@/components/CreateGoal').default
   },
   {
-    path: '/goals-list',
-    name: 'goals-list',
+    path: '/goals',
+    name: 'goals',
     component: require('@/components/GoalsList').default
   },
   {

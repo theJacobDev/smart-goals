@@ -6,7 +6,7 @@ export default class Goal {
     this.measurables = params.measurables || []
     this.achievables = params.achievables || []
     this.relevant = params.relevant || ''
-    this.timebound = params.timeBound || moment().toDate()
+    this.timeBound = params.timeBound || moment().toDate()
     this.created_at = moment().toDate()
   }
 }

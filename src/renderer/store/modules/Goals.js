@@ -67,9 +67,12 @@ const actions = {
     }
   },
   deleteGoal ({ commit }, goalId) {
-    db.goals.remove({ _id: goalId }, {}, (err) => {
-      if (err) alert(err)
-      commit('DELETE_GOAL', goalId)
+    return new Promise((resolve, reject) => {
+      db.goals.remove({ _id: goalId }, {}, (err) => {
+        if (err) reject(err)
+        commit('DELETE_GOAL', goalId)
+        resolve('success')
+      })
     })
   }
 }

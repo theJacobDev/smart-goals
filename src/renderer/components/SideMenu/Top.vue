@@ -13,7 +13,7 @@
         <span>Add goal</span>
       </template>
     </el-menu-item>
-    <el-menu-item index="/goals-list">
+    <el-menu-item index="/goals">
       <template slot="title">
         <i class="el-icon-tickets" />
         <span>Goals list</span>

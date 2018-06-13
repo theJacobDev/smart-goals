@@ -41,7 +41,7 @@ import { mapState } from 'vuex'
 import PageHeader from '@/components/Common/PageHeader'
 
 export default {
-  name: 'goals-list',
+  name: 'goals',
   components: { PageHeader },
   computed: {
     ...mapState('Goals', ['goals'])
