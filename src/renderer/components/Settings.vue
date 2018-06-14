@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row type="flex" justify="center">
-      <page-header title="Settings" icon="setting">
+      <page-header title="Settings" icon="cogs">
         <template slot="description">
 
         </template>

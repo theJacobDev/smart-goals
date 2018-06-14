@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row type="flex" justify="center">
-      <page-header title="Goals list" icon="tickets">
+      <page-header title="Goals list" icon="list">
         <template slot="description">
         </template>
       </page-header>

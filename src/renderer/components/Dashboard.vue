@@ -1,6 +1,6 @@
 <template>
   <el-row type="flex" justify="center">
-    <page-header title="SMART Goals" icon="star-off">
+    <page-header title="Smart Goals" icon="star">
       <template slot="description">
 
       </template>

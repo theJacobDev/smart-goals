@@ -5,7 +5,10 @@
         <editable-text :value="goal.specific" @update="updateGoal('specific', $event)" class="title" />
       </div>
       <el-row type="flex">
-        <el-col :span="20" :offset="2" class="goal-settings">
+        <el-col :span="2" class="info-icon">
+          <font-awesome-icon icon="calendar-alt" />
+        </el-col>
+        <el-col :span="20" class="goal-settings">
           <div>
             <p>Created <span class="color--info">{{ goal.created_at | moment('DD/MM/YYYY') }}</span></p>
             <p>Time-bound <span class="color--warning">{{ goal.timeBound | moment('MM/YYYY') }}</span></p>
@@ -95,6 +98,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/assets/scss/palette.scss';
+
 .goal {
   .title {
     i, .el-input {
@@ -105,6 +110,17 @@ export default {
       display: inherit;
     }
   }
+  .info-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    svg {
+      transform: rotate(5deg);
+      opacity: 0.5;
+      color: $blue-light;
+    }
+  }
   .el-card {
     margin-bottom: 20px;
     h2 {
@@ -113,7 +129,7 @@ export default {
     }
 
     p {
-      word-break: break-all;
+      word-break: normal;
     }
   }
   .goal-settings {
